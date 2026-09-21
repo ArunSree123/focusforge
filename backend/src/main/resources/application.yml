@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: never
+spring:
+  application:
+    name: focusforge
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/focusforge}
+    username: ${DB_USER:focusforge}
+    password: ${DB_PASSWORD:focusforge}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}   # use "validate" + migrations once the schema is stable
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  jackson:
+    default-property-inclusion: always
+    serialization:
+      write-dates-as-timestamps: false
+app:
+  jwt:
+    secret: ${JWT_SECRET:}          # REQUIRED, >= 32 chars. Generate with: openssl rand -base64 48
+    expiration-hours: ${JWT_EXPIRATION_HOURS:72}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  timezone: ${APP_TIMEZONE:Asia/Kolkata}
+management:
+  endpoints.web.exposure.include: health

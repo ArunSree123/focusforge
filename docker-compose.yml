@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: focusforge
+      POSTGRES_USER: focusforge
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-focusforge}
+    ports: ["5433:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U focusforge"]
+      interval: 5s
+      retries: 10
+volumes:
+  pgdata:
