@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-oat-100 font-sans text-ink-700 antialiased;
+    background-image:
+      radial-gradient(900px 500px at 92% -10%, rgba(233, 196, 118, .22), transparent 60%),
+      radial-gradient(800px 500px at -10% 10%, rgba(147, 184, 164, .22), transparent 60%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3 { @apply font-display text-ink-900; }
+  :focus-visible { @apply outline-none ring-2 ring-moss-500 ring-offset-2 ring-offset-oat-100; }
+  ::selection { background: #D9E7DF; }
+}
+
+@layer components {
+  .card { @apply rounded-3xl border border-oat-300/60 bg-oat-50/85 shadow-soft backdrop-blur-sm; }
+  .input {
+    @apply w-full rounded-xl border border-oat-300 bg-white/80 px-3 py-2 text-sm text-ink-900
+           placeholder:text-ink-400 transition-colors focus:border-moss-500;
+  }
+  .label { @apply mb-1 block text-xs font-medium text-ink-500; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
